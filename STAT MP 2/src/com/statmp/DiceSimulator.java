@@ -4,12 +4,12 @@ import java.util.Scanner;
 
 public class DiceSimulator {
 	
-	private int nDices;
+	private int nDice;
 	private long trials;
 	private Die[] dice;
 	
 	public DiceSimulator() {
-		nDices = askInput("How many dices would you like to throw?");
+		nDice = askInput("How many dice would you like to throw?");
 		trials = askInput("How many trials?");
 		start();
 	}
@@ -21,8 +21,8 @@ public class DiceSimulator {
 	}
 	
 	public void start() {
-		dice = new Die[nDices];
-		int[] results = new int[nDices];
+		dice = new Die[nDice];
+		int[] results = new int[nDice];
 		for(int i = 0; i < dice.length; i++) {
 			dice[i] = new Die();
 		}
