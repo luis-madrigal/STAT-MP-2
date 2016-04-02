@@ -32,6 +32,10 @@ public class Logger {
 	public void logTrial(int trialNum, int[] results) {
 		log.add("Trial "+String.valueOf(trialNum)+": "+Arrays.toString(results));
 	}
+	
+	public void logCorrectGuessCount(int correctGuesses){
+		log.add("Number trials that totaled to your guess: " + correctGuesses);
+	}
 
 	public ArrayList<String> getLog() {
 		return log;
@@ -43,9 +47,8 @@ public class Logger {
 	
 	public void generateLog(){
 		try {
-			for(int i = 0; i < Logger.getInstance().getLog().size(); i++) {
-				
-				
+			for(int i = 0; i < Logger.getInstance().getLog().size(); i++) 
+			{
 					writer.append(Logger.getInstance().getLog().get(i));
 					writer.write(System.getProperty("line.separator"));
 			
