@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class DiceSimulator {
 	
 	private int nDice;
-	private int trials;
+	private long trials;
 	private Die[] dice;
 	
 	public DiceSimulator() {
@@ -21,7 +21,6 @@ public class DiceSimulator {
 	}
 	
 	public void start() {
-		Logger.setFileName("log");
 		dice = new Die[nDice];
 		int[] results = new int[nDice];
 		for(int i = 0; i < dice.length; i++) {
@@ -34,6 +33,8 @@ public class DiceSimulator {
 			}
 			Logger.getInstance().logTrial(i+1, results);
 		}
+		
+		Logger.getInstance().generateLog();
 	}
 
 }

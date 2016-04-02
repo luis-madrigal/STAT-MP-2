@@ -1,17 +1,25 @@
 package com.statmp;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Logger {
 	
+	private static final String fileName = "log";
+	
 	private static Logger instance;
 	private ArrayList<String> log;
-	private ExportTxt export;
+	private FileWriter writer;
 	
 	private Logger() {
 		log = new ArrayList<String>();
-		export = new ExportTxt();
+		try {
+			writer = new FileWriter(fileName+".txt");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public static Logger getInstance() {
@@ -23,28 +31,7 @@ public class Logger {
 	
 	public void logTrial(int trialNum, int[] results) {
 		log.add("Trial "+String.valueOf(trialNum)+": "+Arrays.toString(results));
-		export.generate("log");
 	}
-	
-//	public void logAdd(Task task) {
-//		this.log.add((new Date()).toString()+" Added "+task.getTask()+" ");
-//		export.generate("log");
-//	}
-//	
-//	public void logRemove(Task task) {
-//		this.log.add((new Date()).toString()+" Removed "+task.getTask());
-//		export.generate("log");
-//		
-//	}
-//	
-//	public void logMarked(Task task) {
-//		if(task.isCompleted())
-//			this.log.add((new Date()).toString()+" Marked "+task.getTask());
-//		else
-//			this.log.add((new Date()).toString()+" Unmarked "+task.getTask());
-//		export.generate("log");
-//
-//	}
 
 	public ArrayList<String> getLog() {
 		return log;
@@ -52,5 +39,20 @@ public class Logger {
 
 	public void setLog(ArrayList<String> log) {
 		this.log = log;
+	}
+	
+	public void generateLog(){
+		try {
+			for(int i = 0; i < Logger.getInstance().getLog().size(); i++) {
+				
+				
+					writer.append(Logger.getInstance().getLog().get(i));
+					writer.write(System.getProperty("line.separator"));
+			
+			}
+			writer.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
