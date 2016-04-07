@@ -53,6 +53,26 @@ public class GraphMaker
 		re.eval("axis(1, at = intervals);");
 		re.eval("dev.off()");
 	}
+	/*
+	N = 1000
+	minPoss = 5
+	maxPoss = minPoss*6
+	prob = 1/(maxPoss-minPoss-1)
+	colors = c("slategray2", "sky blue")
+	minNum = 0
+	maxNum = N 
+	range = minNum:maxNum
+	bin = NULL
+	bin$breaks = (minNum-0.5):(maxNum+0.5)
+	bin$counts = dbinom(range, maxNum, prob)
+	attr(bin, "class") = "histogram" 
+	col.border = colors
+	png("Ideal Binomial Distribution.png")
+	plot(bin, border = col.border, col = colors, main = 
+	paste("Ideal Binomial Distribution (N = ", N, ")", sep = ""), 
+    	xlab = "k", ylab = "P[X = k]") 
+	dev.off()*/
+
 	
 	
 }
