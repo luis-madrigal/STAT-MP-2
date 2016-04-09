@@ -73,6 +73,38 @@ public class DiceSimulator {
 		Logger.getInstance().logCorrectGuessCount(correctGuessCount);
 		
 		Logger.getInstance().generateLog();
+		int height = 550;
+		int width = 650;
+		Histogram freqHist = new Histogram(sumOfResults, nDice, height, width, goalRoll);
+		Histogram probHist = new Histogram(sumOfResults, nDice, height, width, goalRoll);
+		Histogram idealHist = new Histogram(nDice, height, width);
+//		Histogram hist = new Histogram(sumOfResults, nDice, height, width, goalRoll);
+		
+		JFrame frame = new JFrame();
+		frame.setBounds(200, 100, width+20, height+40);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+		frame.add(idealHist);
+		frame.setTitle("Ideal Distribution");
+		idealHist.graphIdeal();
+		
+		JFrame frame1 = new JFrame();
+		frame1.setBounds(200, 100, width+20, height+40);
+		frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame1.setVisible(true);
+		frame1.add(freqHist);
+		frame1.setTitle("Actual Result Frequency Distribution");
+		freqHist.graph(Histogram.FREQ_HIST);
+		
+		JFrame frame2 = new JFrame();
+		frame2.setBounds(200, 100, width+20, height+40);
+		frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame2.setVisible(true);
+		frame2.add(probHist);
+		frame2.setTitle("Actual Result Probability Distribution");
+		probHist.graph(Histogram.PROB_HIST);
 	}
+	
+	
 
 }
