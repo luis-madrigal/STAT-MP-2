@@ -1,6 +1,7 @@
 package com.histograms;
 
 import java.awt.Color;
+import java.text.DecimalFormat;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
@@ -31,16 +32,21 @@ public class Break extends JLabel{
 		setBounds(x, height-y, width, y);
 		setBackground(color);
 		setOpaque(true);
+		setToolTip(type);
+	}
+	
+	public void initEmptyLabel(int x, int y, int width, int height, int type) {
+		setBounds(x, height-y, width, y);
+		setToolTip(type);
+	}
+	
+	private void setToolTip(int type) {
 		if(type == Histogram.FREQ_HIST)
 			setToolTipText("Result Sum: "+num+",Frequency: "+freq);
 		else if(type == Histogram.PROB_HIST || type == Histogram.IDEAL_HIST) {
-			setToolTipText("Result Sum: "+num+",Probability: "+prob);
+			DecimalFormat df = new DecimalFormat("#.########");
+			setToolTipText("Result Sum: "+num+",Probability: "+df.format(prob));
 		}
-	}
-	
-	public void initEmptyLabel(int x, int y, int width, int height) {
-		setBounds(x, height-y, width, y);
-		setToolTipText("Result Sum: "+num+",Frequency: "+freq);
 	}
 		
 	public int getNum() {
